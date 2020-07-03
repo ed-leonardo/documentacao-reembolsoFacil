@@ -1,0 +1,174 @@
+# Group Usuário
+## Criação de Usuário [/User/Create]
+### Criação de Usuário [POST]
+- Rota para criação de usuário
+- Apenas usuários do RH podem criar usuários.
++ Request (application/json)
+    
+	+ Body
+
+    [
+      {
+        "flaglevel": 4,
+  			"fullName": "Tony Stark",
+  			"cpf": "40155847736",
+  			"agency": 1337,
+  			"account": "454554-4",
+  			"departament": 2,
+  			"bank": 313,
+  			"login": "Stark",
+  			"senha": "123456",
+  			"approver": 10
+      }
+		]
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+  			"id": 12 ,
+			 	"flaglevel": 4,
+  			"fullName": "Tony Stark",
+  			"cpf": "40155847736",
+  			"agency": 1337,
+  			"account": "454554-4",
+  			"departament": 2,
+  			"bank": 313,
+  			"login": "Stark",
+  			"senha": "123456",
+  			"approver": 10
+			}
+		]
+		
++ Response 400 (application/json)
+
+	+ Body
+	{
+	  "timestamp": "2020-07-03T00:01:03.187+00:00",
+  	"status": 400,
+  	"error": "Bad Request",
+  	"message": "",
+  	"path": "/WebApiReembolsoFacil/User/Create"
+	}
+	
+## Show [/User/Show/id]
+### Show [GET]
+- Rota que devolve um usuário em específico.
++ Request (application/json)
+    
+	+ Body 
+		No Body
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+  			"id": 12 ,
+			 	"flaglevel": 4,
+  			"fullName": "Tony Stark",
+  			"cpf": "40155847736",
+  			"agency": 1337,
+  			"account": "454554-4",
+  			"departament": 2,
+  			"bank": 313,
+  			"login": "Stark",
+  			"senha": "123456",
+  			"approver": 10
+			}
+		]
+		
++ Response 400 (application/json)
+
+	+ Body
+	{
+	  "timestamp": "2020-07-03T00:01:03.187+00:00",
+  	"status": 404,
+  	"error": "Not Found",
+  	"message": "",
+  	"path": "/WebApiReembolsoFacil/User/Show/id"
+	}
+	
+## Listagem de Usuários [/User/All]
+### Listagem de Usuários [GET]
+- Rota que lista todos os usuários cadastrados na base de dados.
++ Request (application/json)
+    
+	+ Body 
+		No Body
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+  			"id": 12 ,
+			 	"flaglevel": 4,
+  			"fullName": "Tony Stark",
+  			"cpf": "40155847736",
+  			"agency": 1337,
+  			"account": "454554-4",
+  			"departament": 2,
+  			"bank": 313,
+  			"login": "Stark",
+  			"senha": "123456",
+  			"approver": 10
+			},
+			{
+  			"id": 14 ,
+			 	"flaglevel": 4,
+  			"fullName": "Luke Skywalker",
+  			"cpf": "30154847736",
+  			"agency": 1337,
+  			"account": "784514-4",
+  			"departament": 2,
+  			"bank": 313,
+  			"login": "Luke",
+  			"senha": "123456",
+  			"approver": 10
+			}
+		]
+
+## Autenticação [/User/Authenticate/login/senha]
+### Autenticação [GET]
+- Rota para autenticar na aplicação.
+
++ Request (application/json)
+    
+	+ Body 
+		No Body
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		{
+  		"id": 12 ,
+		 	"flaglevel": 4,
+  		"fullName": "Tony Stark",
+  		"cpf": "40155847736",
+  		"agency": 1337,
+  		"account": "454554-4",
+  		"departament": 2,
+  		"bank": 313,
+  		"login": "Stark",
+  		"senha": "123456",
+  		"approver": 10
+		}
+
+## Deletar um Usuário [/User/Delete/id]
+### Deletar um Usuário [DELETE]
+- Rota para excluir um usuário
+
++ Response 200 (application/json)
+
+  {
+    message: 'Usuário excluído com sucesso'
+  }
