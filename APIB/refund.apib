@@ -1,0 +1,234 @@
+# Group Reembolso
+## Criação [/Refund/Create]
+### Criação [POST]
+- Rota para criação de reembolso.
+- Apenas usuários do RH podem criar usuários.
++ Request (application/json)
+    
+	+ Body
+
+    {
+      "justification": "Refeição",
+      "description": "Shopping Metrópole",
+      "location": "Centro Sbc",
+      "type_refund": 1,
+      "users": 10,
+      "status": 1,
+      "cnpj": "56191683/8686-86",
+      "flowPhase": null,
+      "approver": 10,
+      "value": 30.0
+   }
+	
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+  			"id": 7,
+        "justification": "Refeição",
+        "description": "Shopping Metrópole",
+        "location": "Centro Sbc",
+        "type_refund": 1,
+        "users": 10,
+        "status": 1,
+        "cnpj": "56191683/8686-86",
+        "flowPhase": null,
+        "approver": 10,
+        "value": 30.0
+			}
+		]
+		
++ Response 400 (application/json)
+
+	+ Body
+	{
+	  "timestamp": "2020-07-03T00:01:03.187+00:00",
+  	"status": 400,
+  	"error": "Bad Request",
+  	"message": "",
+  	"path": "/WebApiReembolsoFacil/Refund/Create"
+	}
+	
+## Show [/Refund/Show/id]
+### Show [GET]
+- Rota que devolve um reembolso em específico.
++ Request (application/json)
+    
+	+ Body 
+		No Body
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+  			"id": 7,
+        "justification": "Refeição",
+        "description": "Shopping Metrópole",
+        "location": "Centro Sbc",
+        "type_refund": 1,
+        "users": 10,
+        "status": 1,
+        "cnpj": "56191683/8686-86",
+        "flowPhase": null,
+        "approver": 10,
+        "value": 30.0
+			}
+		]
+		
++ Response 400 (application/json)
+
+	+ Body
+	{
+	  "timestamp": "2020-07-03T00:01:03.187+00:00",
+  	"status": 404,
+  	"error": "Not Found",
+  	"message": "",
+  	"path": "/WebApiReembolsoFacil/Refund/Show/id"
+	}
+	
+## Listagem [/Refund/All/:user]
+### Listagem [GET]
+- Rota que lista todos reembolsos cadastrados de um usuário.
++ Request (application/json)
+    
+	+ Body 
+		No Body
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+	    {
+        "id": 7,
+        "justification": "Refeição",
+        "description": "Shopping Metrópole",
+        "location": "Centro Sbc",
+        "type_refund": 1,
+        "users": 10,
+        "status": 1,
+        "cnpj": "56191683/8686-86",
+        "flowPhase": null,
+        "approver": 10,
+        "value": 30.0
+      },
+      {
+        "id": 10,
+        "justification": "Jantar",
+        "description": "CEFSA",
+        "location": "Alvarenga",
+        "type_refund": 1,
+        "users": 7,
+        "status": 1,
+        "cnpj": "11,111,111/1111-11",
+        "flowPhase": null,
+        "approver": 7,
+        "value": 22.0
+      }
+		]
+
+## Lista a serem aprovados [/ListApprover/:user]
+### Lista a serem aprovados [GET]
+- Rota que lista reembolsos a serem aprovados.
+- Apenas usuários do nível aprovador tem acesso a essa rota.
++ Request (application/json)
+    
+	+ Body 
+		No Body
+
++ Response 200 (application/json)
+
+	+ Body
+	
+  [
+    {
+      "id": 4,
+      "justification": "Alimentação",
+      "description": "BK",
+      "location": "Shopping ABC",
+      "type_refund": 1,
+      "users": 10,
+      "status": 1,
+      "cnpj": "46467763/8869-44",
+      "flowPhase": null,
+      "approver": 10,
+      "value": 35.0
+    },
+    {
+      "id": 6,
+      "justification": "Visita cliente",
+      "description": "TM",
+      "location": "Estrada dos Alvarengas",
+      "type_refund": 2,
+      "users": 10,
+      "status": 1,
+      "cnpj": "54319956/5864-49",
+      "flowPhase": null,
+      "approver": 10,
+      "value": 45.0
+    },
+    {
+      "id": 7,
+      "justification": "Refeição",
+      "description": "Shopping Metrópole",
+      "location": "Centro Sbc",
+      "type_refund": 1,
+      "users": 10,
+      "status": 1,
+      "cnpj": "56191683/8686-86",
+      "flowPhase": null,
+      "approver": 10,
+      "value": 30.0
+    }
+  ]
+
+
+## Aprovar [/Refund/Approve/id]
+### Aprovar [PUT]
+- Rota para se aporvar um reembolso.
+- Apenas usuários do nível aprovador tem acesso a essa rota.
+
++ Request (application/json)
+    
+	+ Body 
+		No Body
+
++ Response 200 (application/json)
+
+  {
+    message: 'Reembolso aprovado com sucesso'
+  }
+
+## Finalizar Reembolso [/Refund/Finish/id]
+### Finalizar Reembolso [PUT]
+- Rota para finalizar um reembolso.
+- Apenas usuários do financeiro podem finalizar o processo de reembolso.
+
++ Request (application/json)
+    
+	+ Body 
+		No Body
+
++ Response 200 (application/json)
+
+  {
+    message: 'Reembolso finalizado'
+  }
+
+## Deletar [/Refund/Delete/id]
+### Deletar [DELETE]
+- Rota para excluir um reembolso.
+
++ Response 200 (application/json)
+
+  {
+    message: 'Reembolso excluído com sucesso'
+  }
